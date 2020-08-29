@@ -1,4 +1,4 @@
-set -e
+set -vxe
 unset PATH
 for p in $buildInputs; do
   export PATH=$p/bin${PATH:+:}$PATH
@@ -16,3 +16,5 @@ done
 ./configure --prefix=$out
 make
 make install
+#find $out -type f -exec patchelf --shrink-rpath '{}' \; -exec strip '{}' \; 2>/dev/null
+find ./result -type f -exec patchelf --shrink-rpath '{}' \; -exec strip '{}' \; 2>/dev/null || true
