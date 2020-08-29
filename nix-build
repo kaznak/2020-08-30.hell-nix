@@ -1,0 +1,6 @@
+
+. ~/.nix-profile/etc/profile.d/nix.sh
+curl -O http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz
+nix-build hello.nix
+./result/bin/hello
+
